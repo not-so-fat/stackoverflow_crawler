@@ -42,7 +42,7 @@ class StackoverflowCrawler:
         for q in questions:
             db_record = self.db_session.query(dbmodel.Question).\
                     filter_by(question_id=q['question_id']).first()
-            if db_record and db_record["updated"] >= q["updated"]:
+            if db_record and db_record.updated >= q["updated"]:
                 stop = True
                 break
             else:
