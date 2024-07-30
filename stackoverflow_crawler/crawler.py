@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 class StackoverflowCrawler:
-    def __init__(self, db_url, tag, timeout_seconds=5):
+    def __init__(self, db_url, tag, timeout_seconds=10):
         self.db_session = dbmodel.init_db(db_url)()
         self.tag = tag
         self.timeout_seconds = timeout_seconds

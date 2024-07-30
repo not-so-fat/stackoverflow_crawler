@@ -13,7 +13,7 @@ logging.getLogger('notebook').setLevel(logging.INFO)
 
 
 tag = "python"
-db_url = f"sqlite://crawl_results_{tag}.db"
+db_url = f"sqlite:///crawl_results_{tag}.db"
 crawler = stackoverflow_crawler.StackoverflowCrawler(db_url, tag)
 crawler.crawl()
 ```
