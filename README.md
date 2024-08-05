@@ -1,7 +1,7 @@
 # Stackoverflow Crawler
 
 To fetch information on stackoverflow for a specified tag.
--> for my purpose it would be better to use https://api.stackexchange.com/docs instead of crawling...
+This module calls StackExchange API https://api.stackexchange.com/docs instead of webpages.
 
 
 ## Usage
