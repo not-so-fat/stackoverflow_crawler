@@ -1,6 +1,17 @@
-from sqlalchemy import create_engine, inspect, Column, String, Integer, ForeignKey, TIMESTAMP
+from sqlalchemy import (
+    create_engine,
+    Column,
+    String,
+    Integer,
+    Boolean,
+    DateTime,
+    ForeignKey
+)
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import (
+    relationship, 
+    sessionmaker
+)
 
 
 Base = declarative_base()
@@ -10,23 +21,26 @@ class Question(Base):
     __tablename__ = 'questions'
     question_id = Column(String, primary_key=True, index=True)
     title = Column(String)
-    description = Column(String)
-    user_id = Column(String)
-    url = Column(String)
-    updated = Column(TIMESTAMP)
-    num_vote = Column(Integer)
-    num_answer = Column(Integer)
-    num_view = Column(Integer)
+    body = Column(String) # body (not markdown)
+    user_id = Column(String) # owner - user_id
+    url = Column(String) # link
+    created = Column(DateTime) # creation_date
+    updated = Column(DateTime) # last_activity_date
+    vote_count = Column(Integer) # score
+    answer_count = Column(Integer)
+    view_count = Column(Integer)
 
 
 class Answer(Base):
     __tablename__ = 'answers'
     answer_id = Column(String, primary_key=True, index=True)
     question_id = Column(String, ForeignKey('questions.question_id'))
-    description = Column(String)
-    updated = Column(TIMESTAMP)
-    user_id = Column(String)
-    num_vote = Column(Integer)
+    user_id = Column(String) # owner - user_id
+    body = Column(String) # not markdown
+    created = Column(DateTime) # creation_date
+    updated = Column(DateTime) # last_activity_date
+    is_accepted = Column(Boolean)
+    vote_count = Column(Integer) # score
     question = relationship("Question", back_populates="answers")
 
 
